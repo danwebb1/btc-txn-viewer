@@ -1,0 +1,101 @@
+/* PaginatedTable.css */
+.table-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.confirmed {
+  background-color: #e6ffe6;
+  color: #008000;
+}
+
+.pending {
+  background-color: #fff3e6;
+  color: #cc7700;
+}
+
+.rejected {
+  background-color: #ffe6e6;
+  color: #cc0000;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #86D3D9;
+}
+
+.pagination button:disabled {
+  background-color: #f4f4f4;
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: #86D3D9;
+  color: white;
+  border-color: #86D3D9;
+}
+
+.loading,
+.error {
+  text-align: left;
+  padding: 20px;
+}
+.address-valid {
+  text-align: left;
+  padding: 20px;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.loading {
+  color: #666;
+}
+
+.addressBox {
+  width: 75%;
+  border: 5px solid #86D3D9;
+  padding: 10px;
+  margin: 20px;
+}
+.addressBox span {
+  display:block;
+  font-weight:bold;
+  color: #86D3D9;
+}
