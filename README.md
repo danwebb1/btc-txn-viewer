@@ -9,6 +9,6 @@ Currently, two official plugins are available:
 
 ## Installation
 
-run: cd anchorwatch-challenge
-run: yarn install
-run: yarn dev
+- Run: cd anchorwatch-challenge
+- Run: yarn install
+- Run: yarn dev
