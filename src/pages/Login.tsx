@@ -32,7 +32,7 @@ const Login = (): ReactElement|null => {
           <div className="col-span-2 row-span-1"></div>
           <div className="col-span-2 row-span-1 login-instructions">LOGIN TO YOUR ACCOUNT</div>
           <div className="row-span-8 col-span-1 login-button-col content-center">
-              <button className="w-full bg-indigo-500 text-white font-semibold py-2 rounded-md hover:bg-indigo-600 transition duration-300" onClick={signInWithGoogle}>
+              <button id="searchButton" className="w-full bg-indigo-500 text-white font-semibold py-2 rounded-md hover:bg-indigo-600 transition duration-300" onClick={signInWithGoogle}>
                 Sign in with Google
             </button></div>
           <div className="row-span-8 col-span-1 gmail justify-self-center content-center">

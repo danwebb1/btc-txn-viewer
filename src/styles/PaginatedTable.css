@@ -59,6 +59,7 @@ th {
   color: #86D3D9;
 }
 
+
 .pagination button:disabled {
   background-color: #f4f4f4;
   cursor: not-allowed;

@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import '../styles/PaginatedTable.css';
 import {FormattedTransaction} from "~/hooks/useFetchAddressTransactions";
+import {useFavoriteStore} from '../store/useFavoriteTxnsStore'
 
 export type PaginatedTableProps = {
   transactions: FormattedTransaction[]|null,
@@ -12,6 +13,7 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   const [txData, setTxData] = useState<Array<FormattedTransaction>>([]);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavoriteStore()
   const itemsPerPage = 10;
 
   if(transactions?.length && transactions.length > 0 && transactions.length != totalItems) {
@@ -33,6 +35,14 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   const handlePageChange = (pageNumber:number) => {
     setCurrentPage(pageNumber);
   };
+
+  const handleFavoriteToggle = (item: FormattedTransaction) => {
+    if (isFavorite(item.txId)) {
+      removeFavorite(item.txId)
+    } else {
+      addFavorite(item)
+    }
+  }
 
   return (
     <div>
@@ -58,7 +68,16 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index}>
-              <td>{item.type}</td>
+              <td>
+                <button
+                  id="fav"
+                  onClick={() => handleFavoriteToggle(item)}
+                  className={isFavorite(item.txId) ? 'favorite' : ''}
+                >
+                  {isFavorite(item.txId) ? '★' : '☆'}
+                </button>
+                {item.type}
+              </td>
               <td>{new Date(item.date).toLocaleDateString()}</td>
               <td>{item.txId}</td>
               <td>{item.amount.toFixed(8)}</td>

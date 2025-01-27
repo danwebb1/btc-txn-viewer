@@ -9,6 +9,9 @@ export default defineConfig({
   define: {
     'process.env': process.env
   },
+  optimizeDeps: {
+    exclude: ['zustand']
+  },
   plugins: [
       react(),
       tailwindcss(),

@@ -75,7 +75,7 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
               onChange={handleChange}
               placeholder="Enter address..."
             />
-            <button type="submit">Search</button>
+            <button id="searchButton" type="submit">Search</button>
           </form>
             <div className="addressBox">
           {(submittedAddress && !error) ? (
