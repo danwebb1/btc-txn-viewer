@@ -17,6 +17,7 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   if(transactions?.length && transactions.length > 0 && transactions.length != totalItems) {
     setTxData(transactions)
     setTotalItems(transactions?.length)
+    setCurrentPage(1)
   }
 
   if (error) {

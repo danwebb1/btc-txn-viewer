@@ -46,6 +46,7 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
       onAddressChange(inputText)
       setError(null)
     } else {
+      setSubmittedAddress(' ');
       setError('Invalid address: '+inputText);
     }
     setInputText('');
@@ -76,21 +77,23 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
             />
             <button type="submit">Search</button>
           </form>
+            <div className="addressBox">
           {(submittedAddress && !error) ? (
-              <div className="addressBox">
+              <div>
                 <p>
                   <span>Address</span> {submittedAddress}
                 </p>
                 <p>
                   <span>Balance</span> {addressBalance}
                 </p>
-            </div>
+              </div>
           ) : (submittedAddress && error) && (
                <h3 className="error">
                  {error}
                </h3>
           )}
-        </div>
+          </div>
+      </div>
     </div>
   );
 }
