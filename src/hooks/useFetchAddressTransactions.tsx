@@ -66,7 +66,7 @@ interface UseFetchTransactionsResult {
 export interface FormattedTransaction {
   type: string;
   txId: string;
-  amount: string;
+  amount: number;
   status: string;
   date: string;
   fee: number|null,
@@ -75,8 +75,8 @@ export const calculateTransactionDetails = (transactions: Transaction[], address
   const txns:Array<any> = []
 
   transactions.forEach((transaction) => {
-    let sendAmount:number|undefined = 0;
-    let receiveAmount:number|undefined  = 0;
+    let sendAmount:number = 0;
+    let receiveAmount:number  = 0;
     let isFromAddress:boolean = false;
     let isSelfTransfer:boolean = false;
 

@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLoading } from '../context/LoadingContext';
 import { usePageTransition } from '../hooks/usePageTransition.ts';
 import React, {ReactElement} from "react";
-const Login = (): ReactElement => {
+const Login = (): ReactElement|null => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { startLoading, stopLoading } = useLoading();

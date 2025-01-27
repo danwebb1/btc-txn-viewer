@@ -1,7 +1,7 @@
 import React from 'react'
 import { signInWithPopup } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
-import {auth, googleProvider} from '../config/firebase.ts';
+import {auth, googleProvider} from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export interface User {
@@ -28,7 +28,7 @@ export const useAuth = (): AuthContextType => {
 }
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User|null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {

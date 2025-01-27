@@ -7,13 +7,25 @@ type AddressInputProps = {
  onAddressChange: (value: string) => void;
 }
 
-async function getAddressBalance(address) {
+interface TransactionUTXO {
+  txid: string;
+  vout: number;
+  status: {
+    confirmed: boolean;
+    block_height: number;
+    block_hash: string;
+    block_time: number;
+  };
+  value: number;
+}
+
+async function getAddressBalance(address:string) {
   // Get address UTXOs
   const response = await fetch(`https://mempool.space/api/address/${address}/utxo`);
   const utxos = await response.json();
 
   // Calculate total balance from UTXOs
-  const balance = utxos.reduce((total, utxo) => total + utxo.value, 0);
+  const balance = utxos.reduce((total:number, utxo:TransactionUTXO) => total + utxo.value, 0);
 
   return {
     confirmedBalance: balance,
@@ -27,7 +39,7 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
   const [addressBalance, setAddressBalance] = useState<number>(0)
   const [error, setError] = useState<string|null>(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     if (validate(inputText, Network.mainnet)) {
       setSubmittedAddress(inputText);
@@ -40,7 +52,7 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
   };
 
   useEffect(() => {
-    async function fetchAddressData(address) {
+    async function fetchAddressData(address:string) {
       if(address !== '') {
       const balance = await getAddressBalance(address)
         setAddressBalance(balance.bitcoin)
@@ -49,11 +61,11 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
     fetchAddressData(submittedAddress)
   }, [submittedAddress]);
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setInputText(e.target.value);
   };
   return (
-    <div>
+      <div className="flex flex-wrap">
       <form onSubmit={handleSubmit}>
         <input
           type="text"

@@ -3,7 +3,7 @@ import '../styles/PaginatedTable.css';
 import {FormattedTransaction} from "~/hooks/useFetchAddressTransactions";
 
 export type PaginatedTableProps = {
-  transactions: Array<FormattedTransaction>,
+  transactions: FormattedTransaction[]|null,
   isLoading: boolean,
   error:string|null;
 }
@@ -14,7 +14,7 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10;
 
-  if(transactions?.length > 0 && transactions.length != totalItems) {
+  if(transactions?.length && transactions.length > 0 && transactions.length != totalItems) {
     setTxData(transactions)
     setTotalItems(transactions?.length)
   }
@@ -29,7 +29,7 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   const currentItems = txData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(txData.length / itemsPerPage);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber:number) => {
     setCurrentPage(pageNumber);
   };
 

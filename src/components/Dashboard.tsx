@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {Navigate} from 'react-router-dom';
 import {useAuth} from '../context/AuthContext';
-import PaginatedTable from "./PaginatedTable.tsx";
-import AddressInput from "./AddressInput.tsx";
+import PaginatedTable from "./PaginatedTable";
+import AddressInput from "./AddressInput";
 import useFetchTransactions from "~/hooks/useFetchAddressTransactions";
 
 interface DashboardProps {

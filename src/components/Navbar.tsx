@@ -1,9 +1,8 @@
-import {useAuth, User} from '../context/AuthContext.tsx';
+import {useAuth, User} from '../context/AuthContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -18,7 +17,7 @@ const Navbar = () => {
       console.error(error);
     }
   };
-
+  const {displayName, photoURL} = user
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -37,7 +36,7 @@ const Navbar = () => {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               <img
-                src={user.photoURL}
+                src={user?.photoURL}
                 alt="Profile"
                 className="profile-image"
               />
