@@ -34,16 +34,24 @@ const PaginatedTable = ({transactions, isLoading, error}: PaginatedTableProps) =
   };
 
   return (
-    <div className="table-container">
-      <table>
+    <div>
+      <table className="w-full text-left table-auto min-w-max">
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Date</th>
-            <th>TX ID</th>
-            <th>Amount (BTC)</th>
-            <th>Fee (Sats)</th>
-            <th>Status</th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">
+                Type</p>
+            </th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">Date</p></th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">TX ID</p></th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">Amount (BTC)</p></th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">Fee (Sats)</p></th>
+            <th className="p-4 border-b border-slate-200 bg-slate-50">
+              <p className="text-sm font-normal leading-none text-slate-500">Status</p></th>
           </tr>
         </thead>
         <tbody>

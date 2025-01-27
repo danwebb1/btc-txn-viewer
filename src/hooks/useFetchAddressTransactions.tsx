@@ -157,15 +157,17 @@ const useFetchTransactions = (address: string|null): UseFetchTransactionsResult 
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch<AddressTransactionsResponse>(`https://mempool.space/api/address/${address}/txs`);
+        const response = await fetch(`https://mempool.space/api/address/${address}/txs`);
         if (!response.ok) {
           throw new Error(`Error fetching transactions: ${response.statusText}`);
         }
         const data: Transaction[] = await response.json();
         const transactionsFormatted:Array<FormattedTransaction> = calculateTransactionDetails(data, address);
+
         transactionsFormatted.sort((a, b) => {
           const dateA = new Date(a.date);
           const dateB = new Date(b.date);
+           // @ts-ignore
           return dateB - dateA;
         });
         setTransactions(transactionsFormatted);

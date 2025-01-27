@@ -20,9 +20,13 @@ const Dashboard = ({ children }: DashboardProps) => {
     setAddress(addressValue);
   };
   return (
-      <div>
-          <AddressInput onAddressChange={handleAddressChange}/>
-          <PaginatedTable transactions={transactions} isLoading={isLoading} error={error} />
+      <div className="w-xl mx-auto">
+          <div>
+            <AddressInput onAddressChange={handleAddressChange}/>
+          </div>
+          <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+            <PaginatedTable transactions={transactions} isLoading={isLoading} error={error} />
+          </div>
         {children}
       </div>
   )

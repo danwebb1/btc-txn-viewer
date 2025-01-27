@@ -65,30 +65,32 @@ const AddressInput = ({ onAddressChange}: AddressInputProps) => {
     setInputText(e.target.value);
   };
   return (
-      <div className="flex flex-wrap">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputText}
-          onChange={handleChange}
-          placeholder="Enter address..."
-        />
-        <button type="submit">Search</button>
-      </form>
-      {(submittedAddress && !error) ? (
-          <div className="addressBox">
-            <p>
-              <span>Address</span> {submittedAddress}
-            </p>
-            <p>
-              <span>Balance</span> {addressBalance}
-            </p>
+      <div>
+        <div className="w-xl mx-auto">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={inputText}
+              onChange={handleChange}
+              placeholder="Enter address..."
+            />
+            <button type="submit">Search</button>
+          </form>
+          {(submittedAddress && !error) ? (
+              <div className="addressBox">
+                <p>
+                  <span>Address</span> {submittedAddress}
+                </p>
+                <p>
+                  <span>Balance</span> {addressBalance}
+                </p>
+            </div>
+          ) : (submittedAddress && error) && (
+               <h3 className="error">
+                 {error}
+               </h3>
+          )}
         </div>
-      ) : (submittedAddress && error) && (
-           <h3 className="error">
-             {error}
-           </h3>
-      )}
     </div>
   );
 }

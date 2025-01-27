@@ -17,7 +17,7 @@ const Navbar = () => {
       console.error(error);
     }
   };
-  const {displayName, photoURL} = user
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -29,7 +29,7 @@ const Navbar = () => {
           <a onClick={() => navigate('/')}>Dashboard</a>
         </div>
 
-        {user && (
+        {user?.photoURL && (
           <div className="navbar-profile">
             <div
               className="profile-trigger"

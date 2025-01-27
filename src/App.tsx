@@ -26,7 +26,7 @@ function AppContent() {
     <Router>
       <div className="app">
         <div className="flex h-screen flex items-center justify-center">
-          <div className="w-3/5 border-2 border-solid">
+          <div className="w-lg border-2 border-solid">
         {isLoading && <LoadingSpinner />}
         <Routes>
           <Route path="/login" element={<Login />} />

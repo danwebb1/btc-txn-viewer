@@ -3,7 +3,7 @@ import { auth, googleProvider } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLoading } from '../context/LoadingContext';
-import { usePageTransition } from '../hooks/usePageTransition.ts';
+import { usePageTransition } from '../hooks/usePageTransition';
 import React, {ReactElement} from "react";
 const Login = (): ReactElement|null => {
   const navigate = useNavigate();

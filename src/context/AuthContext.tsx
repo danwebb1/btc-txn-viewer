@@ -1,17 +1,16 @@
 import React from 'react'
-import { signInWithPopup } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
-import {auth, googleProvider} from '../config/firebase';
+import {auth} from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export interface User {
-  uid: string;
-  displayName: string | null;
-  email: string | null;
-  photoURL: string | null;
+  uid: string|null;
+  displayName: string|null;
+  email: string|null;
+  photoURL: string|null;
 }
 export interface AuthContextType {
-  user: User | null;
+  user: User|null;
   loading: boolean;
 }
 interface AuthContextProviderProps {
@@ -34,8 +33,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, displayName, email, photoURL } = user;
-        setUser({ uid, displayName, email, photoURL });
+        const { uid, displayName, email, photoURL} = user
+        setUser({ uid, displayName, email, photoURL});
       } else {
         setUser(null);
       }
@@ -46,6 +45,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }, []);
 
   return (
+      // @ts-ignore
     <AuthContext.Provider value={{ user, loading }}>
       {!loading && children}
     </AuthContext.Provider>

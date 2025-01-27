@@ -1,4 +1,4 @@
-import { usePageTransition } from '../hooks/usePageTransition.ts';
+import { usePageTransition } from '../hooks/usePageTransition';
 import React, {ReactElement} from "react";
 
 const Home = (): ReactElement => {
