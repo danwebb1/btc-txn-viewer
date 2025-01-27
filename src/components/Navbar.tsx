@@ -1,13 +1,14 @@
-import { useAuth } from '../context/AuthContext';
+import {useAuth, User} from '../context/AuthContext.tsx';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
 const Navbar = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const handleSignOut = async () => {
     try {

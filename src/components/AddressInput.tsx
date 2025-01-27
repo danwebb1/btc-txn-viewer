@@ -1,13 +1,32 @@
 import React, { useState,useEffect } from 'react';
 import { validate, Network } from 'bitcoin-address-validation';
 import '../styles/input.css';
-import {getAddressBalance} from "../utils/index.js";
 
-function AddressInput({onAddressChange}) {
-  const [inputText, setInputText] = useState('');
-  const [submittedAddress, setSubmittedAddress] = useState('');
-  const [addressBalance, setAddressBalance] = useState(0)
-  const [error, setError] = useState(null);
+
+type AddressInputProps = {
+ onAddressChange: (value: string) => void;
+}
+
+async function getAddressBalance(address) {
+  // Get address UTXOs
+  const response = await fetch(`https://mempool.space/api/address/${address}/utxo`);
+  const utxos = await response.json();
+
+  // Calculate total balance from UTXOs
+  const balance = utxos.reduce((total, utxo) => total + utxo.value, 0);
+
+  return {
+    confirmedBalance: balance,
+    satoshis: balance,
+    bitcoin: balance / 100000000 // Convert sats to BTC
+  };
+}
+const AddressInput = ({ onAddressChange}: AddressInputProps) => {
+  const [inputText, setInputText] = useState<string>('');
+  const [submittedAddress, setSubmittedAddress] = useState<string>('');
+  const [addressBalance, setAddressBalance] = useState<number>(0)
+  const [error, setError] = useState<string|null>(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate(inputText, Network.mainnet)) {
@@ -21,14 +40,14 @@ function AddressInput({onAddressChange}) {
   };
 
   useEffect(() => {
-    fetchAddressData(submittedAddress);
-  }, [submittedAddress]);
-  const fetchAddressData = async (address) => {
-    if(address !== '') {
+    async function fetchAddressData(address) {
+      if(address !== '') {
       const balance = await getAddressBalance(address)
-      setAddressBalance(balance.bitcoin)
+        setAddressBalance(balance.bitcoin)
+      }
     }
-  }
+    fetchAddressData(submittedAddress)
+  }, [submittedAddress]);
 
   const handleChange = (e) => {
     setInputText(e.target.value);

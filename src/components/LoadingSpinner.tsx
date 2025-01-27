@@ -1,4 +1,6 @@
-const LoadingSpinner = () => {
+import {ReactElement} from "react";
+
+const LoadingSpinner = (): ReactElement => {
   return (
     <div className="loading-overlay">
       <div className="loading-spinner">
